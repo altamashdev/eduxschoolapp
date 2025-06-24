@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNex - The Future of Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2E86C1 0%, #4ECDC4 100%); /* A vibrant educational gradient */
+            margin: 0;
+            color: #fff;
+            overflow: hidden; /* Hide anything outside the viewport */
+            position: relative;
+        }
+
+        /* Animated Background Shapes */
+        .background-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08); /* Semi-transparent white */
+            border-radius: 50%;
+            animation: moveShapes 20s infinite ease-in-out alternate;
+        }
+
+        .shape.s1 { width: 120px; height: 120px; top: 10%; left: 5%; animation-delay: 0s; }
+        .shape.s2 { width: 80px; height: 80px; bottom: 15%; right: 8%; animation-delay: 2s; }
+        .shape.s3 { width: 150px; height: 150px; top: 30%; right: 15%; animation-delay: 4s; }
+        .shape.s4 { width: 100px; height: 100px; bottom: 5%; left: 20%; animation-delay: 6s; }
+        .shape.s5 { width: 70px; height: 70px; top: 20%; left: 40%; animation-delay: 8s; }
+
+        @keyframes moveShapes {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            25% { transform: translate(20px, -15px) scale(1.05); opacity: 0.9; }
+            50% { transform: translate(0, -30px) scale(1.1); opacity: 1; }
+            75% { transform: translate(-20px, -15px) scale(1.05); opacity: 0.9; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+        }
+
+        .splash-content {
+            z-index: 10; /* Ensure content is above background shapes */
+            text-align: center;
+            opacity: 0; /* Hidden by default, then animated in */
+            animation: fadeInScale 1.5s forwards ease-out;
+            animation-delay: 0.5s; /* Delay content animation slightly */
+        }
+
+        .splash-logo {
+            width: 150px; /* Larger logo */
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for crispness */
+            border-radius: 30px; /* Softer rounded corners */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px; /* Center and spacing */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: bounce 2s infinite; /* Gentle bounce */
+            overflow: hidden;/*For Logo Image Comfort*/
+        }
+
+        .splash-logo img {
+            width: 100%; /* Adjust size of actual image within the box */
+            height: 100%;
+            object-fit: contain;
+            /* If you use text 'E' instead of image, style it like this: */
+            /* font-size: 5em; font-weight: 800; color: #2E86C1; */
+        }
+
+        .splash-app-name {
+            font-size: 3.5em; /* Larger, bolder name */
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .splash-slogan {
+            font-family: 'Roboto', sans-serif; /* A slightly different font for slogan */
+            font-size: 1.2em;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 300px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* Gentle up and down */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .splash-logo {
+                width: 120px;
+                height: 120px;
+                border-radius: 25px;
+            }
+            .splash-app-name {
+                font-size: 2.5em;
+                letter-spacing: 2px;
+            }
+            .splash-slogan {
+                font-size: 1em;
+                max-width: 250px;
+            }
+            .shape {
+                animation: none; /* Disable complex animations on small devices for performance */
+                display: none; /* Hide background shapes */
+            }
+        }
+    </style>
+</head>
+<body class="animate__animated">
+    <div class="background-shapes">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+        <div class="shape s4"></div>
+        <div class="shape s5"></div>
+    </div>
+
+    <div class="splash-content">
+        <div class="splash-logo">
+            <img src="images/logo1.jpg" alt="EduNex Logo">
+            </div>
+        <div class="splash-app-name">EduNex</div>
+        <div class="splash-slogan">ज्ञान, नवाचार और विकास का आपका द्वार।</div>
+    </div>
+
+    <script>
+        
+             // Wait 2 seconds, then fade out
+            setTimeout(function () {
+                document.body.classList.add("animate__fadeOut");
+            }, 3000);
+
+            // After 3 seconds  redirect
+             setTimeout(function() {
+                window.location.href = "next-panel/Language-change.HTML";
+            }, 3000);
+    </script>
+</body>
+</html>

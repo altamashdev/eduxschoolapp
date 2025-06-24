@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNex - Teacher Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f8ff; /* Very light blue/off-white background */
+            margin: 0;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+        .login-wrapper {
+            display: flex;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            width: 95%;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.95); /* Slightly scale down for initial subtle effect */
+            animation: fadeInWrapper 1s forwards ease-out;
+        }
+
+        @keyframes fadeInWrapper {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .login-illustration {
+            flex: 1;
+            background: linear-gradient(135deg, #F39C12 0%, #FFA07A 100%); /* Warm Orange to Peach gradient for teachers */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        .login-illustration::before,
+        .login-illustration::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            z-index: 1;
+            animation: rotateShapes 15s infinite linear; /* Rotational animation */
+        }
+        .login-illustration::before {
+            width: 180px;
+            height: 180px;
+            top: -60px;
+            left: -60px;
+            opacity: 0.7;
+            animation-duration: 18s;
+        }
+        .login-illustration::after {
+            width: 220px;
+            height: 220px;
+            bottom: -80px;
+            right: -80px;
+            opacity: 0.6;
+            animation-duration: 20s;
+        }
+        @keyframes rotateShapes {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.05); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .illustration-content {
+            z-index: 2;
+            padding: 20px;
+        }
+        .illustration-content svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        .illustration-content h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .illustration-content p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .login-form-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-form-section h2 {
+            font-size: 2em;
+            color: #F39C12; /* Teacher-specific accent color */
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        .input-group input[type="email"],
+        .input-group input[type="password"] {
+            width: calc(100% - 40px);
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+        .input-group input[type="email"]:focus,
+        .input-group input[type="password"]:focus {
+            border-color: #F39C12; /* Teacher accent color on focus */
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+            outline: none;
+        }
+        .input-group .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            color: #777;
+        }
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+        .forgot-password a {
+            color: #F39C12; /* Teacher accent color */
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .forgot-password a:hover {
+            color: #d68f11;
+        }
+        .btn-login {
+            background-color: #F39C12; /* Teacher accent color */
+            color: #fff;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        .btn-login:hover {
+            background-color: #d68f11;
+            transform: translateY(-2px);
+        }
+
+        #student-login{
+            margin-top: 25px;
+        }
+
+        .language-toggle {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .language-toggle a {
+            color: #F39C12 ; /* Blue for language link */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .language-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+                max-width: 450px;
+            }
+            .login-illustration {
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 20px;
+                padding: 20px;
+            }
+            .login-illustration::before,
+            .login-illustration::after {
+                display: none;
+            }
+            .login-form-section {
+                padding: 30px;
+            }
+            .illustration-content h2 {
+                font-size: 1.8em;
+            }
+            .illustration-content p {
+                font-size: 0.95em;
+            }
+        }
+        @media (max-width: 480px) {
+            .login-form-section h2 {
+                font-size: 1.6em;
+                margin-bottom: 20px;
+            }
+            .input-group input {
+                padding: 10px 15px 10px 40px;
+            }
+            .input-group .input-icon {
+                top: 42px;
+            }
+            .btn-login {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-illustration">
+            <div class="illustration-content">
+                <i data-feather="users"></i> <h2>EduNex में शिक्षकों का स्वागत है!</h2>
+                <p>ज्ञान को आकार देने और भविष्य को रोशन करने के लिए लॉग इन करें।</p>
+            </div>
+        </div>
+        <div class="login-form-section">
+            <h2>शिक्षक लॉगिन</h2>
+            <div class="input-group">
+                <label for="teacher-email">स्कूल ईमेल आईडी</label>
+                <i data-feather="at-sign" class="input-icon"></i>
+                <input type="email" id="teacher-email" placeholder="teacher@edunex.com" required>
+            </div>
+            <div class="input-group">
+                <label for="teacher-password">पासवर्ड</label>
+                <i data-feather="lock" class="input-icon"></i>
+                <input type="password" id="teacher-password" placeholder="********" required>
+            </div>
+            <div class="forgot-password">
+                <a href="#">पासवर्ड भूल गए?</a>
+            </div>
+            <button class="btn-login">लॉगिन करें</button>
+            <div id="student-login" class="language-toggle">
+                <a href="login-student.HTML">छात्र लॉगिन</a>
+            </div>
+            <div class="language-toggle">
+                <a href="../Language-change.HTML" id="change-language-link">भाषा बदलें?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+
+        document.querySelector('.btn-login').addEventListener('click', function() {
+            const email = document.getElementById('teacher-email').value;
+            const password = document.getElementById('teacher-password').value;
+
+            if (email && password) {
+                alert(`लॉगिन करने का प्रयास: ईमेल - ${email}, पासवर्ड - ${password}`);
+                // In a real app, send these credentials to your backend for authentication.
+                // On successful login, redirect to the teacher dashboard.
+                // window.location.href = 'teacher_dashboard.html'; // Example redirect
+            } else {
+                alert('कृपया ईमेल आईडी और पासवर्ड दोनों दर्ज करें।');
+            }
+        });
+    </script>
+</body>
+</html>

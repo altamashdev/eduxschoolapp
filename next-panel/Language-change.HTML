@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNex - Language Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F4F6F7;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for full page content */
+            min-height: 100vh;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        .language-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+        .language-container h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            color: #2E86C1;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .language-container h2 svg {
+            margin-right: 10px;
+        }
+        .language-option-group {
+            margin-bottom: 20px;
+        }
+        .language-option {
+            display: flex;
+            align-items: center;
+            background-color: #F8F8F8;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        .language-option:hover {
+            background-color: #EBF5FB;
+            border-color: #2E86C1;
+        }
+        .language-option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            accent-color: #2E86C1; /* Change radio button color */
+        }
+        .language-option label {
+            flex-grow: 1;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .language-option.selected {
+            background-color: #EBF5FB;
+            border-color: #2E86C1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .btn-save {
+            background-color: #2E86C1;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-save:hover {
+            background-color: #256bb0;
+        }
+    </style>
+</head>
+<body class="animate__animated animate__fadeIn">
+    <div class="language-container">
+        <h2><i data-feather="globe"></i> भाषा चुनें</h2>
+        <p>ऐप की भाषा बदलने के लिए अपनी पसंदीदा भाषा चुनें।</p>
+
+        <div class="language-option-group">
+            <div class="language-option" data-lang="en">
+                <input type="radio" id="lang-english" name="language" value="en" checked>
+                <label for="lang-english">English (अंग्रेजी)</label>
+            </div>
+            <div class="language-option" data-lang="hi">
+                <input type="radio" id="lang-hindi" name="language" value="hi">
+                <label for="lang-hindi">हिन्दी (Hindi)</label>
+            </div>
+            <div class="language-option" data-lang="mr">
+                <input type="radio" id="lang-marathi" name="language" value="mr">
+                <label for="lang-marathi">मराठी (Marathi)</label>
+            </div>
+            <div class="language-option" data-lang="bn">
+                <input type="radio" id="lang-bengali" name="language" value="bn">
+                <label for="lang-bengali">বাংলা (Bengali)</label>
+            </div>
+            </div>
+
+        <button class="btn-save" id="save-language-btn">सेव करें</button>
+    </div>
+
+    <script>
+        feather.replace();
+
+        const langOptions = document.querySelectorAll('.language-option');
+        const saveBtn = document.getElementById('save-language-btn');
+
+        // Set initial selected state based on checked radio button
+        langOptions.forEach(option => {
+            const radio = option.querySelector('input[type="radio"]');
+            if (radio.checked) {
+                option.classList.add('selected');
+            }
+            option.addEventListener('click', () => {
+                // Remove 'selected' from all
+                langOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add 'selected' to clicked one
+                option.classList.add('selected');
+                radio.checked = true; // Check the radio button
+            });
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const selectedLang = document.querySelector('input[name="language"]:checked').value;
+            saveBtn.innerHTML= "भाषा सेव की जा रही है... ";
+            setTimeout(function () {
+                document.body.classList.add("animate__fadeOut");
+            }, 3000);
+            setTimeout(function () {
+                window.location.href = "login-panel/login-student.HTML";
+            }, 2000);
+            // In a real app, you would:
+            // 1. Save this preference (e.g., in localStorage, database)
+            // 2. Reload the app with the new language texts
+            // 3. Potentially navigate to a dashboard after saving
+        });
+    </script>
+</body>
+</html>
